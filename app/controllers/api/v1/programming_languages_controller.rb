@@ -10,7 +10,7 @@ module Api
             end
             
             private
-            
+            # strong params
             def programming_languages_params
                 params.require(:programming_languages_params).permit(:name, :creator, :released)
             end    
