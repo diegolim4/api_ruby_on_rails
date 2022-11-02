@@ -6,13 +6,20 @@ module Api
             end
 
             def create
-                ProgrammingLanguage.create(programming_languages_params)
+                programming_language = ProgrammingLanguage.new(programming_language_params)
+
+                if programming_language.save
+                    render json: programming_language, status: 200              
+                else
+                    render json: {error: "Houve um error"}, status: 500                
+                end   
             end
             
             private
-            # strong params
-            def programming_languages_params
-                params.require(:programming_languages_params).permit(:name, :creator, :released)
+            
+            def programming_language_params
+                params.require(:programming_language)
+                .permit(:name, :creator, :release_year)
             end    
         end
     end
